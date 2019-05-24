@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    config:
+      name: book-application
+      discovery:
+        serviceId: central-config-server
+        enabled: true
+ 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8082/eureka/
