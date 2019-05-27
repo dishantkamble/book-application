@@ -67,14 +67,13 @@ public class BookConfiguration {
     InitializingBean bookInitializingBean(Map<UUID, Book> bookPersistence, Map<UUID, Author> authorPersistence,
             Map<UUID, LocalPrice> localPricePersistence) {
         return () -> {
-            /* @formatter:off */
             LocalPrice price = LocalPrice.builder()
                     .country(Country.INDIA)
                     .price(new BigDecimal(200))
                     .build();
             price.setId(UUID.randomUUID());
             localPricePersistence.put(price.getId(), price);
-            
+
             Author author = Author.builder()
                     .name("R K Narayanan")
                     .country(Country.INDIA)
@@ -83,7 +82,7 @@ public class BookConfiguration {
                     .build();
             author.setId(UUID.randomUUID());
             authorPersistence.put(author.getId(), author);
-            
+
             Book book = Book.builder()
                     .title("First Book")
                     .author(author)
@@ -93,7 +92,6 @@ public class BookConfiguration {
                     .build();
             book.setId(UUID.randomUUID());
             bookPersistence.put(book.getId(), book);
-            /* @formatter:on */
         };
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,5 +60,11 @@ public class BookController {
     @ApiOperation(value = "Delete book by Id", nickname = "deleteBookById")
     public void deleteBookById(@PathVariable String id) {
         this.bookService.deleteBookById(UUID.fromString(id));
+    }
+
+    @PutMapping(path = "/{id}/sell")
+    @ApiOperation(value = "Sell books", nickname = "sellBooks")
+    public Book sellBooks(@PathVariable String id, @RequestParam Long quantityToSell, @RequestBody Book book) {
+        return this.bookService.sellBooks(book, quantityToSell);
     }
 }

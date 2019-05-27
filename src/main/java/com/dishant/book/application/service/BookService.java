@@ -9,11 +9,13 @@ import com.dishant.book.application.model.Book;
 import com.dishant.book.application.repository.BookRepository;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @AllArgsConstructor
 @Service
 public class BookService {
-    
+
     private BookRepository bookRepository;
 
     public List<Book> getAllBooks() {
@@ -30,12 +32,22 @@ public class BookService {
         book.getPrice().setId(UUID.randomUUID());
         this.bookRepository.save(book);
     }
-    
+
     public Book updateBook(Book book) {
         return this.bookRepository.update(book);
     }
 
     public void deleteBookById(UUID id) {
         this.bookRepository.deleteById(id);
+    }
+
+    public Book sellBooks(Book book, Long quantityToSell) {
+        if (book.getQuantity() < quantityToSell) {
+            log.error("Not enough quantity to sell. Available quantity = " + book.getQuantity());
+            throw new IllegalArgumentException(
+                    "Not enough quantity to sell. Available quantity = " + book.getQuantity());
+        }
+        book.setQuantity(book.getQuantity() - quantityToSell);
+        return this.bookRepository.update(book);
     }
 }
