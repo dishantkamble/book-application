@@ -50,4 +50,14 @@ public class BookService {
         book.setQuantity(book.getQuantity() - quantityToSell);
         return this.bookRepository.update(book);
     }
+
+    public Book addStock(Book book, Long stockToAdd) {
+        if (stockToAdd <= 0) {
+            log.error("Illegal quantity to add to stock. Entered stock to add = " + stockToAdd);
+            throw new IllegalArgumentException(
+                    "Illegal quantity to add to stock. Entered stock to add = " + stockToAdd);
+        }
+        book.setQuantity(book.getQuantity() + stockToAdd);
+        return this.bookRepository.update(book);
+    }
 }

@@ -67,4 +67,10 @@ public class BookController {
     public Book sellBooks(@PathVariable String id, @RequestParam Long quantityToSell, @RequestBody Book book) {
         return this.bookService.sellBooks(book, quantityToSell);
     }
+
+    @PutMapping(path = "/{id}/add-stock")
+    @ApiOperation(value = "Add Stock for a Book", nickname = "addStock")
+    public Book addStock(@PathVariable String id, @RequestParam Long stockToAdd, @RequestBody Book book) {
+        return this.bookService.addStock(book, stockToAdd);
+    }
 }
