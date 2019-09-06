@@ -21,6 +21,6 @@ public class Book extends Entity<UUID> {
     private Year publishedOn;
 
     private LocalPrice price;
-    
+
     private Long quantity;
 }

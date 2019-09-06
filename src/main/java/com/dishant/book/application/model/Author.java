@@ -11,12 +11,12 @@ import lombok.EqualsAndHashCode;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 public class Author extends Entity<UUID> {
-    
+
     private String name;
-    
+
     private Country country;
-    
+
     private Year activeFrom;
-    
+
     private Year activeTo;
 }
