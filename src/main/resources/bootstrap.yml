@@ -3,7 +3,7 @@ spring:
     config:
       name: book-application
       discovery:
-        serviceId: central-config-server
+        service-id: central-config-server
         enabled: true
  
 eureka:

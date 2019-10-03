@@ -41,36 +41,4 @@ public class BookController {
     public Book getBookById(@PathVariable String id) {
         return this.bookService.getBookById(UUID.fromString(id));
     }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @ApiOperation(value = "Save book", nickname = "saveBook")
-    public void saveBook(@RequestBody Book book) {
-        this.bookService.saveBook(book);
-    }
-
-    @PutMapping(path = "/{id}")
-    @ApiOperation(value = "Update book", nickname = "updateBook")
-    public Book updateBook(@PathVariable String id, @RequestBody Book book) {
-        return this.bookService.updateBook(book);
-    }
-
-    @DeleteMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @ApiOperation(value = "Delete book by Id", nickname = "deleteBookById")
-    public void deleteBookById(@PathVariable String id) {
-        this.bookService.deleteBookById(UUID.fromString(id));
-    }
-
-    @PutMapping(path = "/{id}/sell")
-    @ApiOperation(value = "Sell books", nickname = "sellBooks")
-    public Book sellBooks(@PathVariable String id, @RequestParam Long quantityToSell, @RequestBody Book book) {
-        return this.bookService.sellBooks(book, quantityToSell);
-    }
-
-    @PutMapping(path = "/{id}/add-stock")
-    @ApiOperation(value = "Add Stock for a Book", nickname = "addStock")
-    public Book addStock(@PathVariable String id, @RequestParam Long stockToAdd, @RequestBody Book book) {
-        return this.bookService.addStock(book, stockToAdd);
-    }
 }

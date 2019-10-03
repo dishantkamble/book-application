@@ -42,7 +42,7 @@ public class BookConfiguration {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Book Application")
-                .version("1.00.SNAPSHOT")
+                .version("1.0.0-SNAPSHOT")
                 .contact(new Contact("Dishant Kamble", "", "dishantk@gmail.com"))
                 .description("Provides Public API endpoint documentation for - Book Application")
                 .build();
