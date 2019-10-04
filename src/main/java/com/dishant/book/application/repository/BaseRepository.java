@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 import com.dishant.book.application.model.Entity;
 
-public class BaseRepository<T extends Entity<ID>, ID> {
+public class BaseRepository<T extends Entity<I>, I> {
 
-    private Map<ID, T> persistence;
+    private Map<I, T> persistence;
 
-    public BaseRepository(Map<ID, T> persistence) {
+    public BaseRepository(Map<I, T> persistence) {
         this.persistence = persistence;
     }
 
@@ -18,23 +18,23 @@ public class BaseRepository<T extends Entity<ID>, ID> {
         return this.persistence.values().stream().collect(Collectors.toList());
     }
 
-    public T findById(ID id) {
+    public T findById(I id) {
         return this.persistence.get(id);
     }
 
-    public T save(T t) {
-        return this.persistence.put(t.getId(), t);
+    public T save(T entity) {
+        return this.persistence.put(entity.getId(), entity);
     }
 
-    public T update(T t) {
-        return this.persistence.replace(t.getId(), t);
+    public T update(T entity) {
+        return this.persistence.replace(entity.getId(), entity);
     }
 
-    public void delete(T t) {
-        this.persistence.remove(t.getId());
+    public void delete(T entity) {
+        this.persistence.remove(entity.getId());
     }
 
-    public void deleteById(ID id) {
+    public void deleteById(I id) {
         this.persistence.remove(id);
     }
 }
